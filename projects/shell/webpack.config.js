@@ -5,6 +5,7 @@ module.exports = withModuleFederationPlugin({
   remotes: {
     "appA": "http://localhost:4201/remoteEntry.js",
     "appB": "http://localhost:4202/remoteEntry.js",    
+    "components-test": "http://localhost:4203/remoteEntry.js",    
   },
 
   shared: {

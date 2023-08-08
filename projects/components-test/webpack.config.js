@@ -2,10 +2,10 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
-  name: 'appB',
+  name: 'components-test',
 
   exposes: {
-    './HomeModule': './projects/app-b/src/app/components/home/home.module.ts',
+    './Component': './projects/components-test/src/app/app.component.ts',
   },
 
   shared: {
