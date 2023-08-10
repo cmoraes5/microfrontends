@@ -1,12 +1,25 @@
-<div class="container">
-  <h2>Inside shell</h2>
+<!-- <mat-card>
+  <mat-card-title>Inside Shell Navigation</mat-card-title>
+  <mat-card-subtitle>Start</mat-card-subtitle>
+  <mat-card-actions>
 
-  <div class="wrap-button">
-    <button routerLink="/">Home</button>
-    <button routerLink="/app-a">App A</button>
-    <button routerLink="/app-b">App B</button>
+  </mat-card-actions>
+</mat-card> -->
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <h3>Navigate across modules</h3>
+    <button mat-raised-button class="test" routerLink="/" color="primary">Home</button>
+    <button mat-raised-button class="test" routerLink="/app-a" color="accent">App A</button>
+    <button mat-raised-button class="test" routerLink="/app-b" color="warn">App B</button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+
+    <router-outlet></router-outlet>
   </div>
-</div>
 
-
-<router-outlet></router-outlet>
+</mat-drawer-container>
