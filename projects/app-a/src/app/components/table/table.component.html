@@ -1,1 +1,16 @@
-<p>table works!</p>
+<mat-card class="example-card"  *ngFor="let game of gameList" >
+  <mat-card-header class="header">
+    <mat-card-title-group class="title-group">
+      <mat-card-title>{{game.Titulo}}</mat-card-title>
+      <mat-card-subtitle>{{game.Modo}}</mat-card-subtitle>
+      {{game.Descricao}}
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <span>{{game.Desenvolvedores}}</span>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button type="button" (click)="deleteGame(game.Id)" >Delete</button>
+  </mat-card-actions>
+</mat-card>

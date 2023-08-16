@@ -16,6 +16,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "esModuleInterop": true,
+    "paths": {
+      "shared": [
+        "dist/shared"
+      ]
+    },
     "target": "es2020",
     "module": "es2020",
     "lib": [

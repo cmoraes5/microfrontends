@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
+import { TableModule } from '../table/table.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HomeComponent } from './home.component';
         component: HomeComponent
       }
     ]),
+    TableModule,
     CommonModule
   ],
   exports: [

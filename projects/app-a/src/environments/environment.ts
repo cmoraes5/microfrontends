@@ -1,6 +1,8 @@
-export const environment = {
+import { EnvironmentModel } from "projects/shared/src/public-api";
+
+export const environment: EnvironmentModel = {
   production: false,
-  apiBaseMock: false,
+  useApiServiceMock: true,
 
   apiBaseUrl: 'http://localhost:5007/game'
 };
