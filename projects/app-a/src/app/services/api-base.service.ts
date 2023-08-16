@@ -35,6 +35,4 @@ export class ApiBaseService implements IApiBaseServiceModel {
       `${this.apiBaseurl}/${id}`
     )
   }
-
-  // Para adicionar os métodos onde criamos e atualizamos dados, é necessário criar uma model com os dados estruturados, e aí sim adicionar um construtor pra esse objeto
 }

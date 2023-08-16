@@ -1,7 +1,7 @@
 export interface IGame {
-  Id: number,
-  Titulo: string,
-  Descricao: string,
-  Modo: string,
-  Desenvolvedores: string
+  id: number,
+  titulo: string,
+  descricao: string,
+  modo: string,
+  desenvolvedores: string
 }
