@@ -24,15 +24,22 @@ export class ApiBaseService implements IApiBaseServiceModel {
     );
   }
 
-  getItemById(id: number) {
-    return this.http.get(
+  getItemById(id: string): Observable<IGame> {
+    return this.http.get<IGame>(
       `${this.apiBaseurl}/${id}`,
     );
   }
 
-  deleteItem(id: number) {
+  deleteItem(id: string) {
     return this.http.delete<number>(
       `${this.apiBaseurl}/${id}`
     )
+  }
+
+  addItem(newGame: IGame): Observable<IGame> {
+    return this.http.post<IGame>(
+      `${this.apiBaseurl}`,
+      newGame
+    );
   }
 }

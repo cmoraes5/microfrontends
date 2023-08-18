@@ -4,7 +4,9 @@ import { IGame } from "./game.model";
 export interface IApiBaseServiceModel {
   getAllItems(): Observable<IGame[]>;
 
-  getItemById(id: number): any;
+  getItemById(id: string): Observable<IGame>;
 
-  deleteItem(id: number): any;
+  deleteItem(id: string): any;
+
+  addItem(newGame: IGame): any;
 }

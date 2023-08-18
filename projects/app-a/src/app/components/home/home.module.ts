@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { TableModule } from '../table/table.module';
+import { TableModule } from '../table/table.module'
+import { AddGameFormModule } from '../add-game-form/add-game-form.module';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -17,7 +18,7 @@ import { TableModule } from '../table/table.module';
       }
     ]),
     TableModule,
-    CommonModule
+    CommonModule,
   ],
   exports: [
     HomeComponent

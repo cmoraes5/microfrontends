@@ -4,8 +4,9 @@ import { TableComponent } from './table.component';
 import { ApiBaseServiceProvider } from '../../providers/api-base-service.provider';
 
 import { MatCardModule } from '@angular/material/card'
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddGameFormModule } from '../add-game-form/add-game-form.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,11 @@ import { MatCardModule } from '@angular/material/card'
   ],
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    AddGameFormModule,
   ],
   providers: [
     ApiBaseServiceProvider,
