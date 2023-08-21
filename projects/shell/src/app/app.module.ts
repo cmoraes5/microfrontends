@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HomeModule } from './components/home/home.module';
+import { HomeModule } from './pages/home/home.module';
 
 import { AppComponent } from './app.component';
 

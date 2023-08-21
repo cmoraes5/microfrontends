@@ -24,7 +24,9 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllItems();
+  }
 
+  findGameById() {
     this.api.getItemById('a01ec10c-f65b-4fb3-b97e-e754a25f2af2').subscribe({
       next: (data) => {
         console.log(data)
