@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { TableModule } from '../table/table.module'
-import { AddGameFormModule } from '../add-game-form/add-game-form.module';
+import { TableModule } from '../../components/table/table.module'
 
 @NgModule({
   declarations: [
