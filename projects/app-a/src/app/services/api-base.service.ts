@@ -18,6 +18,13 @@ export class ApiBaseService implements IApiBaseServiceModel {
     this.apiBaseurl = this.environment.getEnvironment().apiBaseUrl as string
   }
 
+  addItem(newGame: IGame): Observable<IGame> {
+    return this.http.post<IGame>(
+      `${this.apiBaseurl}`,
+      newGame
+    );
+  }
+
   getAllItems(): Observable<IGame[]> {
     return this.http.get<IGame[]>(
       `${this.apiBaseurl}`
@@ -30,16 +37,16 @@ export class ApiBaseService implements IApiBaseServiceModel {
     );
   }
 
+  updateItemById(gameToUpdate: IGame): Observable<IGame> {
+    return this.http.put<IGame>(
+      `${this.apiBaseurl}/${gameToUpdate.id}`,
+      gameToUpdate,
+    )
+  }
+
   deleteItem(id: string) {
     return this.http.delete<number>(
       `${this.apiBaseurl}/${id}`
     )
-  }
-
-  addItem(newGame: IGame): Observable<IGame> {
-    return this.http.post<IGame>(
-      `${this.apiBaseurl}`,
-      newGame
-    );
   }
 }

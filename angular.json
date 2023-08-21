@@ -138,7 +138,7 @@
 							"projects/app-a/src/assets"
 						],
 						"styles": [
-							"projects/app-a/src/styles.scss"
+							"projects/shell/src/styles.scss"
 						],
 						"scripts": [],
 						"extraWebpackConfig": "projects/app-a/webpack.config.js",

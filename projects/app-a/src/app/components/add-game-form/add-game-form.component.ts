@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { IGame } from '../../models/game.model';
 import { ApiBaseService } from '../../services/api-base.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-game-form',
@@ -17,15 +18,16 @@ export class AddGameFormComponent implements OnInit {
   addGameFormGroup!: FormGroup;
 
   constructor(
+    private dialog: MatDialogRef<AddGameFormComponent>,
     private formBuilder: FormBuilder,
     private api: ApiBaseService,
   ) {
     this.addGameFormGroup = this.formBuilder.group({
       'id': this.formBuilder.control(null),
-      'titulo': this.formBuilder.control(''),
-      'descricao': this.formBuilder.control(''),
+      'titulo': this.formBuilder.control('', Validators.required),
+      'descricao': this.formBuilder.control('', Validators.required),
       'modo': this.formBuilder.control(''),
-      'desenvolvedores': this.formBuilder.control('')
+      'desenvolvedores': this.formBuilder.control('', Validators.required)
     })
   }
 
@@ -35,9 +37,12 @@ export class AddGameFormComponent implements OnInit {
   handleSubmit() {
     const formToSend = this.setFormToSend()
 
-    this.api.addItem(formToSend).subscribe((newGame: IGame) => {
-      this.gameAdded.emit(newGame);
-    });
+    if (this.addGameFormGroup.valid)
+      this.api.addItem(formToSend).subscribe((newGame: IGame) => {
+        this.gameAdded.emit(newGame);
+
+        this.dialog.close()
+      });
   }
 
   setFormToSend() {

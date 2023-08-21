@@ -1,33 +1,33 @@
-  <form class="form-create" [formGroup]="addGameFormGroup" (ngSubmit)="handleSubmit()">
+  <form class="form-update" [formGroup]="updateGameFormGroup" (ngSubmit)="handleSubmit()">
     <div class="inputs-contents">
       <mat-form-field appearance="outline">
         <mat-label>Título</mat-label>
         <input matInput type="text" formControlName="titulo" class="form-control">
 
-        <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo Obrigatório</mat-error>
+        <mat-error *ngIf="updateGameFormGroup.controls['titulo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
-  
+
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
         <textarea rows="8" matInput formControlName="descricao" class="form-control"></textarea>
-
-        <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
-      
+
       <mat-form-field appearance="outline">
         <mat-label>Modo</mat-label>
         <input matInput type="text" formControlName="modo" class="form-control">
+
+        <mat-error *ngIf="updateGameFormGroup.controls['modo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
       
       <mat-form-field appearance="outline">
         <mat-label>Desenvolvedores</mat-label>
         <input matInput type="text" formControlName="desenvolvedores" class="form-control">
 
-        <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo obrigatório</mat-error>
+        <mat-error *ngIf="updateGameFormGroup.controls['desenvolvedores'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
     </div>
     <div class="actions-buttons">
-      <button mat-raised-button type="submit" color="primary">Create Game</button>
+      <button mat-raised-button type="submit" color="primary">Update</button>
       <button mat-button mat-dialog-close>Cancel</button>
     </div>
   </form>

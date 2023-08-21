@@ -6,6 +6,7 @@ import { ApiBaseService } from '../../services/api-base.service';
 import { IGame } from '../../models/game.model';
 
 import { AddGameFormComponent } from '../add-game-form/add-game-form.component';
+import { UpdateGameFormComponent } from '../update-game-form/update-game-form.component';
 
 @Component({
   selector: 'app-table',
@@ -14,8 +15,6 @@ import { AddGameFormComponent } from '../add-game-form/add-game-form.component';
 })
 export class TableComponent implements OnInit {
   gameList: IGame[] = [];
-
-  private isDialogOpen = false;
 
   constructor(
     private api: ApiBaseService,
@@ -33,20 +32,30 @@ export class TableComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    if (!this.isDialogOpen) {
-      this.isDialogOpen = true;
-      const dialogRef = this.dialog.open(AddGameFormComponent);
+  openCreateDialog() {
+    const dialogRef = this.dialog.open(AddGameFormComponent);
 
-      dialogRef.componentInstance.gameAdded.subscribe((newGame: IGame) => {
-        this.gameList.push(newGame);
-      });
+    dialogRef.componentInstance.gameAdded.subscribe((newGame: IGame) => {
+      this.getAllItems()
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log()
-        this.isDialogOpen = false;
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log()
+    });
+  }
+
+  openUpdateDialog(gameToUpdate: IGame) {
+    const dialogRef = this.dialog.open(UpdateGameFormComponent, {
+      data: gameToUpdate
+    });
+
+    dialogRef.componentInstance.gameUpdated.subscribe((gameToUpdate: IGame) => {
+      this.getAllItems()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log()
+    });
   }
 
   getAllItems() {

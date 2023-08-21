@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddGameFormModule } from '../add-game-form/add-game-form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateGameFormModule } from '../update-game-form/update-game-form.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatDialogModule,
     AddGameFormModule,
+    UpdateGameFormModule,
+    MatButtonModule
   ],
   providers: [
     ApiBaseServiceProvider,

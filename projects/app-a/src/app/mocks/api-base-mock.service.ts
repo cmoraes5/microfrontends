@@ -35,6 +35,20 @@ export class ApiBaseMockService implements IApiBaseServiceModel {
 
   constructor() { }
 
+  addItem(
+    newGame: IGame,
+  ) {
+    debugger
+    let newGameId = '';
+
+    const gameList = this.mockedItems
+    newGameId = (gameList.length + 1).toString();
+
+    gameList.push({ ...newGame, id: newGameId });
+
+    return of(newGame.titulo)
+  }
+
   getAllItems() {
     return of(
       this.mockedItems
@@ -46,26 +60,27 @@ export class ApiBaseMockService implements IApiBaseServiceModel {
     return of(getById)
   };
 
+  updateItemById(gameToUpdate: IGame) {
+    const gameList = this.mockedItems
+    const newGameValue = gameToUpdate
+
+    const indexOfGame = gameList.findIndex(
+      ({ id }) => id === newGameValue.id,
+    );
+
+    gameList.splice(indexOfGame, 1);
+    gameList.push(newGameValue);
+
+    return of(gameToUpdate);
+  }
+
   deleteItem(idParam: string) {
-    const mockData = this.mockedItems;
-    const indexOfObject = mockData.findIndex(
+    const gameList = this.mockedItems;
+    const indexOfGame = gameList.findIndex(
       ({ id }) => id === idParam
     );
-    mockData.splice(indexOfObject, 1);
+    gameList.splice(indexOfGame, 1);
 
     return of('Deleted')
   };
-
-  addItem(
-    newGame: IGame,
-  ) {
-    let newGameId = '';
-
-    const gameList = this.mockedItems
-    newGameId = (gameList.length + 1).toString();
-
-    gameList.push({ ...newGame, id: newGameId });
-
-    return of()
-  }
 }
