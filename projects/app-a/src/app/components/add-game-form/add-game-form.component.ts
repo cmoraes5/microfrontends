@@ -24,10 +24,10 @@ export class AddGameFormComponent implements OnInit {
   ) {
     this.addGameFormGroup = this.formBuilder.group({
       'id': this.formBuilder.control(null),
-      'titulo': this.formBuilder.control('', [Validators.required, Validators.maxLength(10)]),
-      'descricao': this.formBuilder.control('', Validators.required),
-      'modo': this.formBuilder.control(''),
-      'desenvolvedores': this.formBuilder.control('', Validators.required)
+      'titulo': this.formBuilder.control('', [Validators.required, Validators.maxLength(100)]),
+      'descricao': this.formBuilder.control('', [Validators.required, Validators.maxLength(380)]),
+      'modo': this.formBuilder.control('', Validators.maxLength(74)),
+      'desenvolvedores': this.formBuilder.control('', [Validators.required, Validators.maxLength(120)])
     })
   }
 
