@@ -9,7 +9,7 @@
   
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
-        <textarea rows="8" matInput formControlName="descricao" class="form-control"></textarea>
+        <textarea rows="8" matInput formControlName="descricao" class="form-control" maxlength="480"></textarea>
 
         <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
