@@ -2,7 +2,7 @@
     <div class="inputs-contents">
       <mat-form-field appearance="outline">
         <mat-label>Título</mat-label>
-        <input matInput type="text" formControlName="titulo" class="form-control">
+        <input matInput type="text" formControlName="titulo" class="form-control" maxLength="28">
 
         <mat-error *ngIf="updateGameFormGroup.controls['titulo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
@@ -10,13 +10,14 @@
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
         <textarea rows="8" matInput formControlName="descricao" class="form-control"></textarea>
+
+        <mat-error *ngIf="updateGameFormGroup.controls['descricao'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Modo</mat-label>
         <input matInput type="text" formControlName="modo" class="form-control">
 
-        <mat-error *ngIf="updateGameFormGroup.controls['modo'].getError('required')">Campo obrigatório</mat-error>
       </mat-form-field>
       
       <mat-form-field appearance="outline">

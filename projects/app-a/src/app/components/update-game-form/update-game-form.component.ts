@@ -29,8 +29,8 @@ export class UpdateGameFormComponent implements OnInit {
     this.updateGameFormGroup = this.formBuilder.group({
       'id': this.formBuilder.control(''),
       'titulo': this.formBuilder.control('', Validators.required),
-      'descricao': this.formBuilder.control(''),
-      'modo': this.formBuilder.control('', Validators.required),
+      'descricao': this.formBuilder.control('', Validators.required),
+      'modo': this.formBuilder.control(''),
       'desenvolvedores': this.formBuilder.control('', Validators.required)
     })
   }
