@@ -8,15 +8,15 @@
 
   <div class="cards-container">
     <mat-card class="example-card"  *ngFor="let game of gameList" >
-      <mat-card-header class="header">
-        <mat-card-title-group class="title-group">
-          <mat-card-title>{{game.titulo}}</mat-card-title>
-          <mat-card-subtitle>{{game.modo}}</mat-card-subtitle>
-          {{game.descricao}}
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content class="content">
-        <span>{{game.desenvolvedores}}</span>
+      <mat-card-content class="card-contents">
+        <mat-card-header class="header">
+          <mat-card-title-group class="title-group">
+            <mat-card-title class="game g-title">{{game.titulo}}</mat-card-title>
+            <mat-card-subtitle class="game g-mode">{{game.modo}}</mat-card-subtitle>
+          </mat-card-title-group>
+            <span class="game g-description">{{game.descricao}}</span>
+        </mat-card-header>
+          <span class="game g-developers">{{game.desenvolvedores}}</span>
       </mat-card-content>
     
       <mat-card-actions>

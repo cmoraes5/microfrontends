@@ -1,10 +1,10 @@
-.buttons-container{
+.buttons-container {
   margin: 1rem 0;
   display: flex;
   gap: 1rem;
 }
 
-.cards-container{
+.cards-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,18 +12,24 @@
 }
 
 .example-card {
-  max-width: 380px;
-  height: 310px;
-  
+  width: 380px;
+  height: 340px;
+
   border: 1px solid #2c2c2c;
   box-shadow: 1px 1px 5px #2c2c2c81;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.header{
+.card-contents{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.header {
   display: flex;
   flex-direction: column;
 }
@@ -31,5 +37,45 @@
 .title-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: space-between;
 }
+
+// Card Contents 
+.game{
+  display: block;
+  white-space: wrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.g-title {
+  max-height: 2.5rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número máximo de linhas */
+  -webkit-box-orient: vertical;
+}
+
+.g-mode {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número máximo de linhas */
+  -webkit-box-orient: vertical;
+
+}
+
+.g-description {
+  max-height: 140px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Número máximo de linhas */
+  -webkit-box-orient: vertical;
+}
+
+.g-developers {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Número máximo de linhas */
+  -webkit-box-orient: vertical;
+
+}
+
+// Card Contents
