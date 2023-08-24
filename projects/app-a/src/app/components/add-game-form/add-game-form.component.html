@@ -7,6 +7,13 @@
         <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo Obrigatório</mat-error>
         <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Modo</mat-label>
+        <input matInput type="text" formControlName="modo" class="form-control"  maxlength="75">
+
+        <mat-error *ngIf="addGameFormGroup.controls['modo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
+      </mat-form-field>
       
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
@@ -14,13 +21,6 @@
         
         <mat-error *ngIf="addGameFormGroup.controls['descricao'].getError('required')">Campo obrigatório</mat-error>
         <mat-error *ngIf="addGameFormGroup.controls['descricao'].getError('maxlength')">Limite de caracteres atingido</mat-error>
-      </mat-form-field>
-      
-      <mat-form-field appearance="outline">
-        <mat-label>Modo</mat-label>
-        <input matInput type="text" formControlName="modo" class="form-control"  maxlength="75">
-
-        <mat-error *ngIf="addGameFormGroup.controls['modo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
       </mat-form-field>
       
       <mat-form-field appearance="outline">

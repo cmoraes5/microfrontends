@@ -11,13 +11,15 @@
             <mat-card-title class="game g-title">{{game.titulo}}</mat-card-title>
             <mat-card-subtitle class="game g-mode">{{game.modo}}</mat-card-subtitle>
           </mat-card-title-group>
-            <span class="game g-description">{{game.descricao}}</span>
+            <span class="game g-description">
+              {{game.descricao}}
+            </span>
         </mat-card-header>
           <span class="game g-developers">{{game.desenvolvedores}}</span>
       </mat-card-content>
     
       <mat-card-actions>
-        <button mat-raised-button type="button" (click)="deleteGame(game.id)" [disabled]="!game.id" color="warn">Delete</button>
+        <button mat-raised-button type="button" (click)="game.id && deleteGame(game.id)" [disabled]="!game.id" color="warn">Delete</button>
         <button mat-raised-button type="button" (click)="openUpdateDialog(game)" [disabled]="!game.id">Update Game</button>
       </mat-card-actions>
     </mat-card>

@@ -28,10 +28,10 @@ export class UpdateGameFormComponent implements OnInit {
   ) {
     this.updateGameFormGroup = this.formBuilder.group({
       'id': this.formBuilder.control(''),
-      'titulo': this.formBuilder.control('', Validators.required),
-      'descricao': this.formBuilder.control('', Validators.required),
-      'modo': this.formBuilder.control(''),
-      'desenvolvedores': this.formBuilder.control('', Validators.required)
+      'titulo': this.formBuilder.control('', [Validators.required, Validators.maxLength(100)]),
+      'modo': this.formBuilder.control('', [Validators.required, Validators.maxLength(74)]),
+      'descricao': this.formBuilder.control('', [Validators.required, Validators.maxLength(380)]),
+      'desenvolvedores': this.formBuilder.control('', [Validators.required, Validators.maxLength(120)])
     })
   }
 
@@ -39,8 +39,8 @@ export class UpdateGameFormComponent implements OnInit {
     this.updateGameFormGroup.patchValue({
       'id': this.data.id,
       'titulo': this.data.titulo,
-      'descricao': this.data.descricao,
       'modo': this.data.modo,
+      'descricao': this.data.descricao,
       'desenvolvedores': this.data.desenvolvedores
     })
   }

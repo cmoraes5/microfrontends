@@ -25,8 +25,8 @@ export class AddGameFormComponent implements OnInit {
     this.addGameFormGroup = this.formBuilder.group({
       'id': this.formBuilder.control(null),
       'titulo': this.formBuilder.control('', [Validators.required, Validators.maxLength(100)]),
-      'descricao': this.formBuilder.control('', [Validators.required, Validators.maxLength(380)]),
       'modo': this.formBuilder.control('', Validators.maxLength(74)),
+      'descricao': this.formBuilder.control('', [Validators.required, Validators.maxLength(380)]),
       'desenvolvedores': this.formBuilder.control('', [Validators.required, Validators.maxLength(120)])
     })
   }
@@ -48,8 +48,8 @@ export class AddGameFormComponent implements OnInit {
   setFormToSend() {
     return {
       titulo: this.addGameFormGroup.controls["titulo"].value,
-      descricao: this.addGameFormGroup.controls["descricao"].value,
       modo: this.addGameFormGroup.controls["modo"].value,
+      descricao: this.addGameFormGroup.controls["descricao"].value,
       desenvolvedores: this.addGameFormGroup.controls["desenvolvedores"].value
     }
   }

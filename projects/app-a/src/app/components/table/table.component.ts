@@ -53,14 +53,14 @@ export class TableComponent implements OnInit {
     });
   }
 
-  deleteGame(id?: string) {
+  deleteGame(id: string) {
     const dialogRef = this.dialog.open(DialogConfirmComponent, {
       data: `Tem certeza de que deseja deletar este jogo?`,
       disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === "confirm" && id)
+      if (result === "confirm")
         this.api.deleteItem(id).subscribe({
           next: () => {
             this.getAllItems()
