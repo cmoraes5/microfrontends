@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { TableModule } from '../../components/table/table.module'
+import { DialogConfirmModule } from '../../components/dialog-confirm/dialog-confirm.module';
+
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { TableModule } from '../../components/table/table.module'
       }
     ]),
     TableModule,
+    DialogConfirmModule,
     CommonModule,
   ],
   exports: [

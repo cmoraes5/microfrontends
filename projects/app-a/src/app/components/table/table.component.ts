@@ -7,6 +7,7 @@ import { IGame } from '../../models/game.model';
 
 import { AddGameFormComponent } from '../add-game-form/add-game-form.component';
 import { UpdateGameFormComponent } from '../update-game-form/update-game-form.component';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-table',
@@ -52,6 +53,22 @@ export class TableComponent implements OnInit {
     });
   }
 
+  deleteGame(id?: string) {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      data: `Tem certeza de que deseja deletar este jogo?`,
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "confirm" && id)
+        this.api.deleteItem(id).subscribe({
+          next: () => {
+            this.getAllItems()
+          }
+        })
+    });
+  }
+
   getAllItems() {
     this.api.getAllItems().subscribe({
       next: (data) => {
@@ -59,14 +76,4 @@ export class TableComponent implements OnInit {
       }
     })
   }
-
-  deleteGame(id?: string) {
-    if (id)
-      this.api.deleteItem(id).subscribe({
-        next: () => {
-          this.getAllItems()
-        }
-      })
-  }
-
 }
