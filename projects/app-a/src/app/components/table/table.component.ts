@@ -5,9 +5,8 @@ import { ApiBaseService } from '../../services/api-base.service';
 
 import { IGame } from '../../models/game.model';
 
-import { AddGameFormComponent } from '../add-game-form/add-game-form.component';
-import { UpdateGameFormComponent } from '../update-game-form/update-game-form.component';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { GameFormComponent } from '../game-form/game-form.component';
 
 @Component({
   selector: 'app-table',
@@ -28,7 +27,9 @@ export class TableComponent implements OnInit {
   }
 
   openCreateDialog() {
-    const dialogRef = this.dialog.open(AddGameFormComponent);
+    const dialogRef = this.dialog.open(GameFormComponent, {
+      data: { isUpdateMode: false }
+    });
 
     dialogRef.componentInstance.gameAdded.subscribe((newGame: IGame) => {
       this.getAllItems()
@@ -40,8 +41,8 @@ export class TableComponent implements OnInit {
   }
 
   openUpdateDialog(gameToUpdate: IGame) {
-    const dialogRef = this.dialog.open(UpdateGameFormComponent, {
-      data: gameToUpdate
+    const dialogRef = this.dialog.open(GameFormComponent, {
+      data: { isUpdateMode: true, gameToUpdate: gameToUpdate }
     });
 
     dialogRef.componentInstance.gameUpdated.subscribe((gameToUpdate: IGame) => {

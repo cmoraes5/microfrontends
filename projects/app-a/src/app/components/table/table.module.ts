@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table.component';
+import { MatCardModule } from '@angular/material/card'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { GameFormModule } from '../game-form/game-form.module';
+
 import { ApiBaseServiceProvider } from '../../providers/api-base-service.provider';
 
-import { MatCardModule } from '@angular/material/card'
-import { AddGameFormModule } from '../add-game-form/add-game-form.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdateGameFormModule } from '../update-game-form/update-game-form.module';
-import { MatButtonModule } from '@angular/material/button';
+import { TableComponent } from './table.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,9 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     ReactiveFormsModule,
     FormsModule,
-    AddGameFormModule,
-    UpdateGameFormModule,
-    MatButtonModule
+    MatButtonModule,
+    GameFormModule
   ],
   providers: [
     ApiBaseServiceProvider,
