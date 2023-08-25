@@ -2,7 +2,9 @@
     <div class="inputs-contents">
       <mat-form-field appearance="outline">
         <mat-label>Título</mat-label>
-        <input matInput type="text" formControlName="titulo" class="form-control" maxlength="101">
+        <input matInput type="text" formControlName="titulo" class="form-control" maxlength="101"
+        [matTooltip]="addGameFormGroup.controls['titulo'].value.length > 100 ? 'O número máximo de caracteres foi excedido' : ''" 
+        [matTooltipPosition]="'right'">
 
         <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('required')">Campo Obrigatório</mat-error>
         <mat-error *ngIf="addGameFormGroup.controls['titulo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
@@ -10,14 +12,20 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Modo</mat-label>
-        <input matInput type="text" formControlName="modo" class="form-control"  maxlength="75">
+        <input matInput type="text" formControlName="modo" class="form-control"  maxlength="75"
+        [matTooltip]="addGameFormGroup.controls['modo'].value.length > 74 ? 'O número máximo de caracteres foi excedido' : ''" 
+        [matTooltipPosition]="'right'"
+        >
 
         <mat-error *ngIf="addGameFormGroup.controls['modo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
       </mat-form-field>
       
       <mat-form-field appearance="outline">
         <mat-label>Descrição</mat-label>
-        <textarea rows="8" matInput formControlName="descricao" class="form-control" maxlength="381"></textarea>
+        <textarea rows="8" matInput formControlName="descricao" class="form-control" maxlength="381"
+        [matTooltip]="addGameFormGroup.controls['descricao'].value.length > 380 ? 'O número máximo de caracteres foi excedido' : ''" 
+        [matTooltipPosition]="'right'"
+        ></textarea>
         
         <mat-error *ngIf="addGameFormGroup.controls['descricao'].getError('required')">Campo obrigatório</mat-error>
         <mat-error *ngIf="addGameFormGroup.controls['descricao'].getError('maxlength')">Limite de caracteres atingido</mat-error>
@@ -25,14 +33,23 @@
       
       <mat-form-field appearance="outline">
         <mat-label>Desenvolvedores</mat-label>
-        <input matInput type="text" formControlName="desenvolvedores" class="form-control" maxlength="121">
+        <input matInput type="text" formControlName="desenvolvedores" class="form-control" maxlength="121" 
+        [matTooltip]="addGameFormGroup.controls['desenvolvedores'].value.length > 120 ? 'O número máximo de caracteres foi excedido' : ''" 
+        [matTooltipPosition]="'right'"
+        >
         
         <mat-error *ngIf="addGameFormGroup.controls['desenvolvedores'].getError('required')">Campo obrigatório</mat-error>
         <mat-error *ngIf="addGameFormGroup.controls['desenvolvedores'].getError('maxlength')">Limite de caracteres atingido</mat-error>
       </mat-form-field>
     </div>
     <div class="actions-buttons">
-      <button mat-raised-button type="submit" color="primary">Create Game</button>
+      <button mat-raised-button 
+        type="submit" 
+        color="primary"
+        [disabled]="!addGameFormGroup.valid"
+        >
+          Create Game
+      </button>
       <button mat-button mat-dialog-close>Cancel</button>
     </div>
   </form>

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { IGame } from '../../models/game.model';
 import { ApiBaseService } from '../../services/api-base.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-add-game-form',
