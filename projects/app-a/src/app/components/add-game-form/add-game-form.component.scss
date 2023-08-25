@@ -3,10 +3,13 @@
   flex-direction: column;
 
   min-width: 20rem;
+  gap: .5rem;
 
   .inputs-contents{
     display: flex;
     flex-direction: column;
+
+    gap: 1rem;
   }
 }
 
