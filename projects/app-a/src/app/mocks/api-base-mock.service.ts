@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { IGame } from './../models/game.model';
 import { IApiBaseServiceModel } from "../models/api-base-service.model";
 
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class ApiBaseMockService implements IApiBaseServiceModel {
     desenvolvedores: "Rockstar Games, Rockstar North"
   },
   {
-    id: 'a01ec10c-f65b-4fb3-b97e-e754a25f2af2',
+    id: 'a01ec10c-f65b-4fb3-b97e-e754aajaf2af2',
     titulo: "Cuphead",
     descricao: "Cuphead e um jogo eletronico de run and gun e plataforma criado pelos irm�os canadenses Chad e Jared Moldenhauer atravas da Studio MDHR. O jogo foi inspirado no estilo de animacao Rubber hose usado em desenhos animados da Era de Ouro da anima��o americana, como o trabalho dos est�dios Fleischer Studios, Warner Bros.",
     modo: "1 Jogador, Multijogador local, Multijogador online",
@@ -38,21 +38,19 @@ export class ApiBaseMockService implements IApiBaseServiceModel {
   addItem(
     newGame: IGame,
   ) {
-    debugger
     let newGameId = '';
 
     const gameList = this.mockedItems
     newGameId = (gameList.length + 1).toString();
 
     gameList.push({ ...newGame, id: newGameId });
-
     return of(newGame.titulo)
   }
 
   getAllItems() {
     return of(
       this.mockedItems
-    )
+    ).pipe(delay(2000))
   }
 
   getItemById(id: string): Observable<IGame> {

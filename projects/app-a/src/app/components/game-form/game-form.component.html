@@ -3,52 +3,48 @@
     <mat-form-field appearance="outline">
       <mat-label>Título</mat-label>
       <input matInput type="text" formControlName="titulo" class="form-control" maxlength="101"
-      [matTooltip]="gameFormGroup.controls['titulo'].value.length > 100 ? 'O número máximo de caracteres foi excedido' : ''" 
-      [matTooltipPosition]="'right'">
+        [matTooltip]="gameFormGroup.controls['titulo'].value.length > 100 ? 'O número máximo de caracteres foi excedido' : ''"
+        [matTooltipPosition]="'right'">
 
       <mat-error *ngIf="gameFormGroup.controls['titulo'].getError('required')">Campo Obrigatório</mat-error>
-      <mat-error *ngIf="gameFormGroup.controls['titulo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
+      <mat-error *ngIf="gameFormGroup.controls['titulo'].getError('maxlength')">Limite de caracteres
+        atingido</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Modo</mat-label>
-      <input matInput type="text" formControlName="modo" class="form-control"  maxlength="75"
-      [matTooltip]="gameFormGroup.controls['modo'].value.length > 74 ? 'O número máximo de caracteres foi excedido' : ''" 
-      [matTooltipPosition]="'right'"
-      >
+      <input matInput type="text" formControlName="modo" class="form-control" maxlength="75"
+        [matTooltip]="gameFormGroup.controls['modo'].value.length > 74 ? 'O número máximo de caracteres foi excedido' : ''"
+        [matTooltipPosition]="'right'">
 
       <mat-error *ngIf="gameFormGroup.controls['modo'].getError('maxlength')">Limite de caracteres atingido</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field appearance="outline">
       <mat-label>Descrição</mat-label>
       <textarea rows="8" matInput formControlName="descricao" class="form-control" maxlength="381"
-      [matTooltip]="gameFormGroup.controls['descricao'].value.length > 380 ? 'O número máximo de caracteres foi excedido' : ''" 
-      [matTooltipPosition]="'right'"
-      ></textarea>
-      
+        [matTooltip]="gameFormGroup.controls['descricao'].value.length > 380 ? 'O número máximo de caracteres foi excedido' : ''"
+        [matTooltipPosition]="'right'"></textarea>
+
       <mat-error *ngIf="gameFormGroup.controls['descricao'].getError('required')">Campo obrigatório</mat-error>
-      <mat-error *ngIf="gameFormGroup.controls['descricao'].getError('maxlength')">Limite de caracteres atingido</mat-error>
+      <mat-error *ngIf="gameFormGroup.controls['descricao'].getError('maxlength')">Limite de caracteres
+        atingido</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field appearance="outline">
       <mat-label>Desenvolvedores</mat-label>
-      <input matInput type="text" formControlName="desenvolvedores" class="form-control" maxlength="121" 
-      [matTooltip]="gameFormGroup.controls['desenvolvedores'].value.length > 120 ? 'O número máximo de caracteres foi excedido' : ''" 
-      [matTooltipPosition]="'right'"
-      >
-      
+      <input matInput type="text" formControlName="desenvolvedores" class="form-control" maxlength="121"
+        [matTooltip]="gameFormGroup.controls['desenvolvedores'].value.length > 120 ? 'O número máximo de caracteres foi excedido' : ''"
+        [matTooltipPosition]="'right'">
+
       <mat-error *ngIf="gameFormGroup.controls['desenvolvedores'].getError('required')">Campo obrigatório</mat-error>
-      <mat-error *ngIf="gameFormGroup.controls['desenvolvedores'].getError('maxlength')">Limite de caracteres atingido</mat-error>
+      <mat-error *ngIf="gameFormGroup.controls['desenvolvedores'].getError('maxlength')">Limite de caracteres
+        atingido</mat-error>
     </mat-form-field>
   </div>
   <div class="actions-buttons">
-    <button mat-raised-button 
-      type="submit" 
-      color="primary"
-      [disabled]="!gameFormGroup.valid"
-      [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'"
-      >
+    <button mat-raised-button type="submit" color="primary" [disabled]="!gameFormGroup.valid"
+      [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'">
         {{submitButtonText}}
     </button>
     <button mat-button mat-dialog-close>Cancel</button>

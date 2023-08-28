@@ -23,6 +23,7 @@ export class GameFormComponent implements OnInit {
 
   submitButtonText: string;
 
+
   constructor(
     private dialog: MatDialogRef<GameFormComponent>,
     private formBuilder: FormBuilder,
@@ -57,18 +58,35 @@ export class GameFormComponent implements OnInit {
     }
   }
 
-  handleSubmit() {
-    const formToSend = this.setFormToSend()
+  handleCreate() {
+    const formToSend = this.setFormToSend();
 
-    if (this.gameFormGroup.valid)
+    if (this.gameFormGroup.valid) {
       this.api.addItem(formToSend).subscribe((newGame: IGame) => {
         this.gameAdded.emit(newGame);
-
-        this.dialog.close()
+        this.dialog.close();
       });
+    }
   }
 
-  setFormToSend() {
+  handleUpdate() {
+    if (this.gameFormGroup.valid) {
+      this.api.updateItemById(this.gameFormGroup.value).subscribe((gameUpdated: IGame) => {
+        this.gameUpdated.emit(gameUpdated);
+        this.dialog.close();
+      });
+    }
+  }
+
+  handleSubmit() {
+    if (this.isUpdateMode) {
+      this.handleUpdate();
+    } else {
+      this.handleCreate();
+    }
+  }
+
+  setFormToSend(): IGame {
     return {
       titulo: this.gameFormGroup.controls["titulo"].value,
       modo: this.gameFormGroup.controls["modo"].value,
