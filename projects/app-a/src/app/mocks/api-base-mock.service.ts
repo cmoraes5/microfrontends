@@ -44,13 +44,13 @@ export class ApiBaseMockService implements IApiBaseServiceModel {
     newGameId = (gameList.length + 1).toString();
 
     gameList.push({ ...newGame, id: newGameId });
-    return of(newGame.titulo)
+    return of(newGame.titulo);
   }
 
   getAllItems() {
     return of(
       this.mockedItems
-    ).pipe(delay(2000))
+    );
   }
 
   getItemById(id: string): Observable<IGame> {

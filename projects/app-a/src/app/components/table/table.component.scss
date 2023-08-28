@@ -4,35 +4,43 @@
   gap: 1rem;
 }
 
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cards-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+
+  .example-card {
+    width: 380px;
+    height: 340px;
+  
+    border: 1px solid #2c2c2c;
+    box-shadow: 1px 1px 5px #2c2c2c81;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    .card-contents{
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+
+      .header {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 }
 
-.example-card {
-  width: 380px;
-  height: 340px;
 
-  border: 1px solid #2c2c2c;
-  box-shadow: 1px 1px 5px #2c2c2c81;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-contents{
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-}
 
 .title-group {
   display: flex;

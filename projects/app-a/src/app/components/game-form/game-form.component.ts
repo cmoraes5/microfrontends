@@ -1,19 +1,17 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import { IGame } from '../../models/game.model';
 import { ApiBaseService } from '../../services/api-base.service';
 
 @Component({
   selector: 'app-game-form',
   templateUrl: './game-form.component.html',
-  styleUrls: ['./game-form.component.scss']
+  styleUrls: ['./game-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GameFormComponent implements OnInit {
-
-  @Output() gameUpdated = new EventEmitter<IGame>();
-
-  @Output() gameAdded = new EventEmitter<IGame>();
 
   gameToUpdate!: IGame;
 
@@ -23,6 +21,7 @@ export class GameFormComponent implements OnInit {
 
   submitButtonText: string;
 
+  isLoading!: boolean;
 
   constructor(
     private dialog: MatDialogRef<GameFormComponent>,
@@ -62,18 +61,34 @@ export class GameFormComponent implements OnInit {
     const formToSend = this.setFormToSend();
 
     if (this.gameFormGroup.valid) {
-      this.api.addItem(formToSend).subscribe((newGame: IGame) => {
-        this.gameAdded.emit(newGame);
-        this.dialog.close();
+      this.isLoading = true;
+
+      this.api.addItem(formToSend).subscribe({
+        next: () => {
+          this.isLoading = false
+
+          this.dialog.close();
+        },
+        error: () => {
+          this.isLoading = false
+        }
       });
     }
   }
 
   handleUpdate() {
     if (this.gameFormGroup.valid) {
-      this.api.updateItemById(this.gameFormGroup.value).subscribe((gameUpdated: IGame) => {
-        this.gameUpdated.emit(gameUpdated);
-        this.dialog.close();
+      this.isLoading = true;
+
+      this.api.updateItemById(this.gameFormGroup.value).subscribe({
+        next: () => {
+          this.isLoading = false
+
+          this.dialog.close();
+        },
+        error: () => {
+          this.isLoading = false
+        }
       });
     }
   }

@@ -22,7 +22,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Descrição</mat-label>
-      <textarea rows="8" matInput formControlName="descricao" class="form-control" maxlength="381"
+      <textarea rows="8" matInput formControlName="descricao" class="form-control descricao" maxlength="381"
         [matTooltip]="gameFormGroup.controls['descricao'].value.length > 380 ? 'O número máximo de caracteres foi excedido' : ''"
         [matTooltipPosition]="'right'"></textarea>
 
@@ -43,9 +43,15 @@
     </mat-form-field>
   </div>
   <div class="actions-buttons">
-    <button mat-raised-button type="submit" color="primary" [disabled]="!gameFormGroup.valid"
+    <button mat-raised-button type="submit" color="primary" [disabled]="!gameFormGroup.valid" class="submitButton"
       [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'">
-        {{submitButtonText}}
+        <div *ngIf="!isLoading">
+          {{submitButtonText}}
+        </div>
+
+        <div class="action-content-spinner" *ngIf="isLoading">
+          <mat-progress-spinner [diameter]="24" color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
     </button>
     <button mat-button mat-dialog-close>Cancel</button>
   </div>

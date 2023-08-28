@@ -41,7 +41,7 @@ export class ApiBaseService implements IApiBaseServiceModel {
     return this.http.put<IGame>(
       `${this.apiBaseurl}/${gameToUpdate.id}`,
       gameToUpdate,
-    )
+    );
   }
 
   deleteItem(id: string) {

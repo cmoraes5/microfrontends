@@ -16,6 +16,8 @@ import { GameFormComponent } from '../game-form/game-form.component';
 export class TableComponent implements OnInit {
   gameList: IGame[] = [];
 
+  isLoading: boolean = false;
+
   constructor(
     private api: ApiBaseService,
     public dialog: MatDialog,
@@ -31,12 +33,8 @@ export class TableComponent implements OnInit {
       data: { isUpdateMode: false }
     });
 
-    dialogRef.componentInstance.gameAdded.subscribe((newGame: IGame) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getAllItems()
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log()
     });
   }
 
@@ -45,12 +43,8 @@ export class TableComponent implements OnInit {
       data: { isUpdateMode: true, gameToUpdate: gameToUpdate }
     });
 
-    dialogRef.componentInstance.gameUpdated.subscribe((gameToUpdate: IGame) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getAllItems()
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log()
     });
   }
 
@@ -61,19 +55,24 @@ export class TableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === "confirm")
+      if (result === "confirm") {
+
         this.api.deleteItem(id).subscribe({
           next: () => {
             this.getAllItems()
           }
         })
+      }
     });
   }
 
   getAllItems() {
+    this.isLoading = true;
+
     this.api.getAllItems().subscribe({
       next: (data) => {
         this.gameList = data
+        this.isLoading = false;
       }
     })
   }

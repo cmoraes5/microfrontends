@@ -5,14 +5,30 @@
   min-width: 20rem;
   gap: .5rem;
 
-  .inputs-contents{
+  .inputs-contents {
     display: flex;
     flex-direction: column;
 
     gap: 1rem;
-  }
-}
 
-.mat-form-field-autofill-control {
-  resize: none;
+    .form-control{
+      resize: none;
+    }
+  }
+
+  .actions-buttons {
+    display: flex;
+    
+    .submitButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .action-content-spinner {
+      circle {
+        stroke: #ffffff;
+      }
+    }
+  }
 }
