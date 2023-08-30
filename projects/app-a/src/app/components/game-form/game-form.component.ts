@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 import { IGame } from '../../models/game.model';
 import { ApiBaseService } from '../../services/api-base.service';
@@ -27,6 +30,7 @@ export class GameFormComponent implements OnInit {
     private dialog: MatDialogRef<GameFormComponent>,
     private formBuilder: FormBuilder,
     private api: ApiBaseService,
+    private snackBar: MatSnackBar,
 
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
@@ -69,9 +73,19 @@ export class GameFormComponent implements OnInit {
 
           this.dialog.close();
         },
-        error: () => {
-          this.isLoading = false
-        }
+        error: (addItemError) => {
+          this.isLoading = false;
+
+          let errorMessage = 'Ocorreu um erro ao criar o jogo';
+
+          if (addItemError && addItemError.error && addItemError.error.message) {
+            errorMessage = addItemError.error.message;
+          }
+
+          this.snackBar.open(errorMessage, 'Fechar', {
+            duration: 5000,
+          });
+        },
       });
     }
   }
@@ -86,8 +100,18 @@ export class GameFormComponent implements OnInit {
 
           this.dialog.close();
         },
-        error: () => {
-          this.isLoading = false
+        error: (updateItemError) => {
+          this.isLoading = false;
+
+          let errorMessage = 'Ocorreu um erro ao atualizar o jogo';
+
+          if (updateItemError && updateItemError.error && updateItemError.error.message) {
+            errorMessage = updateItemError.error.message;
+          }
+
+          this.snackBar.open(errorMessage, 'Fechar', {
+            duration: 5000,
+          });
         }
       });
     }
@@ -108,6 +132,11 @@ export class GameFormComponent implements OnInit {
       descricao: this.gameFormGroup.controls["descricao"].value,
       desenvolvedores: this.gameFormGroup.controls["desenvolvedores"].value
     }
+  }
+
+  showErrorSnackbar(errorMessage: string): void {
+    const config = new MatSnackBarConfig();
+    this.snackBar.open(errorMessage, 'Fechar', config);
   }
 
 }
