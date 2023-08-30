@@ -1,3 +1,27 @@
+.error-container {
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .error-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .status-code {
+      font-size: 6rem;
+      color: #3f51b5;
+    }
+
+    .subtitle-error-text {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 .buttons-container {
   margin: 1rem 0;
   display: flex;
@@ -19,15 +43,15 @@
   .example-card {
     width: 380px;
     height: 340px;
-  
+
     border: 1px solid #2c2c2c;
     box-shadow: 1px 1px 5px #2c2c2c81;
-  
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  
-    .card-contents{
+
+    .card-contents {
       display: flex;
       flex-direction: column;
       gap: .5rem;
@@ -50,11 +74,11 @@
 
 // Card Contents 
 
-.game{
+.game {
   word-wrap: break-word;
 }
 
-.g-title  {
+.g-title {
   max-width: 30ch;
   height: 1.5rem;
   overflow: hidden;

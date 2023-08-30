@@ -1,33 +1,42 @@
-<div class="loading-container" *ngIf="isLoading">
-  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+<div class="error-container" *ngIf="errorOccurred">
+  <div class="error-content">
+    <h1 class="status-code">500</h1>
+    <span class="subtitle-error-text">A conexão com o servidor foi perdida, pedimos perdão😔.</span>
+  </div>
 </div>
 
-<mat-card class="mat-container-content" *ngIf="!isLoading">
-  <div class="buttons-container">
-    <button mat-raised-button (click)="openCreateDialog()" color="primary">Add game</button>
+<div *ngIf="!errorOccurred">
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>
-
-  <div class="cards-container">
-    <mat-card class="example-card" *ngFor="let game of gameList">
-      <mat-card-content class="card-contents">
-        <mat-card-header class="header">
-          <mat-card-title-group class="title-group">
-            <mat-card-title class="game g-title">{{game.titulo}}</mat-card-title>
-            <mat-card-subtitle class="game g-mode">{{game.modo}}</mat-card-subtitle>
-          </mat-card-title-group>
-          <span class="game g-description">
-            {{game.descricao}}
-          </span>
-        </mat-card-header>
-        <span class="game g-developers">{{game.desenvolvedores}}</span>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-raised-button type="button" (click)="game.id && deleteGame(game.id)" [disabled]="!game.id"
-          color="warn">Delete</button>
-        <button mat-raised-button type="button" (click)="openUpdateDialog(game)" [disabled]="!game.id">Update
-          Game</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</mat-card>
+  
+  <mat-card class="mat-container-content" *ngIf="!isLoading">
+    <div class="buttons-container">
+      <button mat-raised-button (click)="openCreateDialog()" color="primary">Add game</button>
+    </div>
+  
+    <div class="cards-container">
+      <mat-card class="example-card" *ngFor="let game of gameList">
+        <mat-card-content class="card-contents">
+          <mat-card-header class="header">
+            <mat-card-title-group class="title-group">
+              <mat-card-title class="game g-title">{{game.titulo}}</mat-card-title>
+              <mat-card-subtitle class="game g-mode">{{game.modo}}</mat-card-subtitle>
+            </mat-card-title-group>
+            <span class="game g-description">
+              {{game.descricao}}
+            </span>
+          </mat-card-header>
+          <span class="game g-developers">{{game.desenvolvedores}}</span>
+        </mat-card-content>
+  
+        <mat-card-actions>
+          <button mat-raised-button type="button" (click)="game.id && deleteGame(game.id)" [disabled]="!game.id"
+            color="warn">Delete</button>
+          <button mat-raised-button type="button" (click)="openUpdateDialog(game)" [disabled]="!game.id">Update
+            Game</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

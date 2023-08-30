@@ -18,14 +18,15 @@ export class TableComponent implements OnInit {
 
   isLoading: boolean = false;
 
+  errorOccurred: boolean = false;
+
   constructor(
     private api: ApiBaseService,
     public dialog: MatDialog,
-
   ) { }
 
   ngOnInit(): void {
-    this.getAllItems();
+    this.loadGameList();
   }
 
   openCreateDialog() {
@@ -34,7 +35,7 @@ export class TableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getAllItems()
+      this.loadGameList();
     });
   }
 
@@ -44,7 +45,7 @@ export class TableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getAllItems()
+      this.loadGameList();
     });
   }
 
@@ -59,20 +60,27 @@ export class TableComponent implements OnInit {
 
         this.api.deleteItem(id).subscribe({
           next: () => {
-            this.getAllItems()
+            this.loadGameList();
           }
         })
       }
     });
   }
 
-  getAllItems() {
+  loadGameList() {
     this.isLoading = true;
+    this.errorOccurred = false;
 
     this.api.getAllItems().subscribe({
       next: (data) => {
         this.gameList = data
         this.isLoading = false;
+
+        this.errorOccurred = false;
+      },
+      error: () => {
+        this.isLoading = false;
+        this.errorOccurred = true;
       }
     })
   }
