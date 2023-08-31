@@ -43,8 +43,13 @@
     </mat-form-field>
   </div>
   <div class="actions-buttons">
-    <button mat-raised-button type="submit" color="primary" [disabled]="!gameFormGroup.valid" class="submitButton"
-      [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'">
+    <button mat-raised-button 
+            type="submit" 
+            color="primary" 
+            [disabled]="!gameFormGroup.valid || (isUpdateMode && !hasFormChanges)" 
+            class="submitButton"
+            [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'">
+            
         <div *ngIf="!isLoading">
           {{submitButtonText}}
         </div>
@@ -52,6 +57,7 @@
         <div class="action-content-spinner" *ngIf="isLoading">
           <mat-progress-spinner [diameter]="24" color="primary" mode="indeterminate"></mat-progress-spinner>
         </div>
+
     </button>
     <button mat-button mat-dialog-close>Cancel</button>
   </div>

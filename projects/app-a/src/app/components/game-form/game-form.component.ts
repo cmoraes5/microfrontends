@@ -27,6 +27,8 @@ export class GameFormComponent implements OnInit {
 
   isLoading!: boolean;
 
+  hasFormChanges: boolean = false;
+
   constructor(
     private dialog: MatDialogRef<GameFormComponent>,
     private formBuilder: FormBuilder,
@@ -59,7 +61,16 @@ export class GameFormComponent implements OnInit {
         'descricao': this.gameToUpdate.descricao,
         'desenvolvedores': this.gameToUpdate.desenvolvedores
       })
+
+      this.gameFormGroup.valueChanges.subscribe(() => {
+        this.hasFormChanges = this.isFormChanged();
+      });
     }
+  }
+
+  isFormChanged(): boolean {
+    return this.gameFormGroup.dirty;
+    // A função dirty retorna true se o valor atual de um controle de formulário difere do valor original.
   }
 
   handleCreate() {
