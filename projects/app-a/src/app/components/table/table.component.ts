@@ -7,6 +7,7 @@ import { IGame } from '../../models/game.model';
 
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import { GameFormComponent } from '../game-form/game-form.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +19,7 @@ export class TableComponent implements OnInit {
 
   isLoading: boolean = false;
 
-  errorOccurred: boolean = false;
+  hasError: boolean = false;
 
   constructor(
     private api: ApiBaseService,
@@ -58,29 +59,30 @@ export class TableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === "confirm") {
 
-        this.api.deleteItem(id).subscribe({
-          next: () => {
-            this.loadGameList();
-          }
-        })
+        this.isLoading = true;
+        this.hasError = false;
+
+        this.api.deleteItem(id).subscribe(() => {
+          this.loadGameList(); // Verificar pq da demora do carregamento
+        });
       }
     });
   }
 
   loadGameList() {
     this.isLoading = true;
-    this.errorOccurred = false;
+    this.hasError = false;
 
     this.api.getAllItems().subscribe({
       next: (data) => {
         this.gameList = data
-        this.isLoading = false;
 
-        this.errorOccurred = false;
-      },
-      error: () => {
         this.isLoading = false;
-        this.errorOccurred = true;
+        this.hasError = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.hasError = true;
       }
     })
   }

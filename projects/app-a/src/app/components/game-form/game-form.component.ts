@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { ApiBaseService } from '../../services/api-base.service';
 
 import { IGame } from '../../models/game.model';
-import { ApiBaseService } from '../../services/api-base.service';
+import { ErrorResponseModel } from '../../models/error-response.model';
 
 @Component({
   selector: 'app-game-form',
@@ -73,13 +74,15 @@ export class GameFormComponent implements OnInit {
 
           this.dialog.close();
         },
-        error: (addItemError) => {
+        error: ({ error }: HttpErrorResponse) => {
+          const backendError = error as ErrorResponseModel;
+
           this.isLoading = false;
 
           let errorMessage = 'Ocorreu um erro ao criar o jogo';
 
-          if (addItemError && addItemError.error && addItemError.error.message) {
-            errorMessage = addItemError.error.message;
+          if (backendError.message) {
+            errorMessage = backendError.message;
           }
 
           this.snackBar.open(errorMessage, 'Fechar', {
@@ -100,13 +103,15 @@ export class GameFormComponent implements OnInit {
 
           this.dialog.close();
         },
-        error: (updateItemError) => {
+        error: ({ error }: HttpErrorResponse) => {
+          const backendError = error as ErrorResponseModel;
+
           this.isLoading = false;
 
           let errorMessage = 'Ocorreu um erro ao atualizar o jogo';
 
-          if (updateItemError && updateItemError.error && updateItemError.error.message) {
-            errorMessage = updateItemError.error.message;
+          if (backendError.message) {
+            errorMessage = backendError.message;
           }
 
           this.snackBar.open(errorMessage, 'Fechar', {
@@ -138,5 +143,4 @@ export class GameFormComponent implements OnInit {
     const config = new MatSnackBarConfig();
     this.snackBar.open(errorMessage, 'Fechar', config);
   }
-
 }
