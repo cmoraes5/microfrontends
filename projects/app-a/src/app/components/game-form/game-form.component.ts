@@ -29,6 +29,8 @@ export class GameFormComponent implements OnInit {
 
   hasFormChanges: boolean = false;
 
+  hasEmptyFields!: boolean;
+
   constructor(
     private dialog: MatDialogRef<GameFormComponent>,
     private formBuilder: FormBuilder,
@@ -50,8 +52,6 @@ export class GameFormComponent implements OnInit {
     })
   }
 
-  isUpdating: boolean = false;
-
   ngOnInit(): void {
     if (this.isUpdateMode) {
       this.gameFormGroup.patchValue({
@@ -65,12 +65,23 @@ export class GameFormComponent implements OnInit {
       this.gameFormGroup.valueChanges.subscribe(() => {
         this.hasFormChanges = this.isFormChanged();
       });
+
+      this.hasEmptyFields = this.areFieldsEmpty(this.gameFormGroup);
     }
   }
 
   isFormChanged(): boolean {
-    return this.gameFormGroup.dirty;
-    // A função dirty retorna true se o valor atual de um controle de formulário difere do valor original.
+    return this.gameFormGroup.dirty && !this.areFieldsEmpty(this.gameFormGroup);
+  }
+
+  private areFieldsEmpty(formGroup: FormGroup): boolean {
+    for (const controlName in formGroup.controls) {
+      const control = formGroup.get(controlName);
+      if (control && typeof control.value === 'string' && control.value.trim() !== '') {
+        return false;
+      }
+    }
+    return true;
   }
 
   handleCreate() {
@@ -142,16 +153,28 @@ export class GameFormComponent implements OnInit {
   }
 
   setFormToSend(): IGame {
-    return {
+    const formToSend: IGame = {
       titulo: this.gameFormGroup.controls["titulo"].value,
       modo: this.gameFormGroup.controls["modo"].value,
       descricao: this.gameFormGroup.controls["descricao"].value,
       desenvolvedores: this.gameFormGroup.controls["desenvolvedores"].value
-    }
+    };
+
+    this.removeEmptyStrings(formToSend);
+
+    return formToSend
   }
 
   showErrorSnackbar(errorMessage: string): void {
     const config = new MatSnackBarConfig();
     this.snackBar.open(errorMessage, 'Fechar', config);
+  }
+
+  private removeEmptyStrings(form: any): void {
+    for (const key in form) {
+      if (form[key] && typeof form[key] === 'string' && form[key].trim() === '') {
+        form[key] = null;
+      }
+    }
   }
 }

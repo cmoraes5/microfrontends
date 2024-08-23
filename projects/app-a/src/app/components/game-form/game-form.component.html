@@ -46,7 +46,7 @@
     <button mat-raised-button 
             type="submit" 
             color="primary" 
-            [disabled]="!gameFormGroup.valid || (isUpdateMode && !hasFormChanges)" 
+            [disabled]="!gameFormGroup.valid || !isFormChanged()"
             class="submitButton"
             [matTooltip]="gameFormGroup.valid ? '' : 'Preencha todos os campos corretamente'">
             

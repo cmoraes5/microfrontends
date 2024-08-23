@@ -1,7 +1,7 @@
 <div class="error-container" *ngIf="hasError">
   <div class="error-content">
-    <h1 class="status-code">500</h1>
-    <span class="subtitle-error-text">A conexão com o servidor foi perdida, pedimos perdão😔.</span>
+    <h1 class="status-code">{{errorStatus}}</h1>
+    <span class="subtitle-error-text">{{errorText}}</span>
   </div>
 </div>
 

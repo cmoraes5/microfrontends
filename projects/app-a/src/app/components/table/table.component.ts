@@ -21,6 +21,10 @@ export class TableComponent implements OnInit {
 
   hasError: boolean = false;
 
+  errorText!: string
+
+  errorStatus!: string;
+
   constructor(
     private api: ApiBaseService,
     public dialog: MatDialog,
@@ -32,7 +36,7 @@ export class TableComponent implements OnInit {
 
   openCreateDialog() {
     const dialogRef = this.dialog.open(GameFormComponent, {
-      data: { isUpdateMode: false }
+      data: { isUpdateMode: false },
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -42,7 +46,7 @@ export class TableComponent implements OnInit {
 
   openUpdateDialog(gameToUpdate: IGame) {
     const dialogRef = this.dialog.open(GameFormComponent, {
-      data: { isUpdateMode: true, gameToUpdate: gameToUpdate }
+      data: { isUpdateMode: true, gameToUpdate: gameToUpdate },
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -83,6 +87,14 @@ export class TableComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
         this.hasError = true;
+
+        this.errorStatus = `Status do erro: ${error.status}`;
+
+        if (error.status === 0) {
+          this.errorText = 'Houve um erro inesperado, pedimos perdão😔';
+        } else {
+          this.errorText = `${error.message}`;
+        }
       }
     })
   }

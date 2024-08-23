@@ -20,33 +20,33 @@ export class ApiBaseService implements IApiBaseServiceModel {
 
   addItem(newGame: IGame): Observable<IGame> {
     return this.http.post<IGame>(
-      `${this.apiBaseurl}`,
+      `${this.apiBaseurl}/game`,
       newGame
     );
   }
 
   getAllItems(): Observable<IGame[]> {
     return this.http.get<IGame[]>(
-      `${this.apiBaseurl}`
+      `${this.apiBaseurl}/game`
     );
   }
 
   getItemById(id: string): Observable<IGame> {
     return this.http.get<IGame>(
-      `${this.apiBaseurl}/${id}`,
+      `${this.apiBaseurl}/game/${id}`,
     );
   }
 
   updateItemById(gameToUpdate: IGame): Observable<IGame> {
     return this.http.put<IGame>(
-      `${this.apiBaseurl}/${gameToUpdate.id}`,
+      `${this.apiBaseurl}/game/${gameToUpdate.id}`,
       gameToUpdate,
     );
   }
 
   deleteItem(id: string) {
     return this.http.delete<number>(
-      `${this.apiBaseurl}/${id}`
+      `${this.apiBaseurl}/game/${id}`
     )
   }
 }
